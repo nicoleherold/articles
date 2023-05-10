@@ -1,5 +1,5 @@
 
-fetch('data1.json')
+fetch('data2.json')
     .then(function (response) {
         return response.json();
     })
