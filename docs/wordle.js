@@ -22,7 +22,7 @@ function receiveMessage(event) {
 
   }
   allWords.innerHTML += wordsString;
-  console.log(wordList);
+  // console.log(wordList);
 }
 
 //zählt wie oft ein Buchstabe im Wort vorkommt

@@ -87,10 +87,11 @@ button {
 	margin-right: 7px;
 	margin-bottom: 7px;
 	cursor: pointer;
-	padding: 5px;
+	padding: 5px 7px 5px 7px;
 	font-family: 'Roboto Condensed', sans-serif;
 	font-size: 12px;
 	font-weight: 400;
+	border-radius: 10px;
 }
 
 main{
@@ -132,6 +133,7 @@ form {
 border: solid 1px #557fff;
 margin-bottom: 10px;
 padding: 8px;
+border-radius: 8px;
 /* background: #fff; */
 /* background: #557fff; */
 }
@@ -139,7 +141,39 @@ padding: 8px;
 
 .buttonQA.active, .buttonQAB.active{
 	background: #1a51f4;
+	color: white;
 }
+
+.buttonQA, .buttonQAB{
+	/* background: white;
+	color:#333;
+	border: solid 1px #333; */
+
+	background: #B4B4B4;
+	color: #090a0d;
+}
+
+.own, .sumy{
+	border: solid 1px blueviolet;
+	margin-bottom: 10px;
+	padding: 5px;
+	background: #fff;
+	border-radius: 8px;
+
+}
+
+
+/* .buttonKeyGpt4, .buttonKeyDavi, .buttonKey {
+	background: white;
+	color:#333;
+	border: solid 1px #333;
+} */
+
+.buttonKeyGpt4.active, .buttonKeyDavi.active, .buttonKey.active {
+	background: #f94b60;
+	color: #090a0d;
+}
+
 
 .buttonWordle.active{
 	background: #ffc530;
@@ -148,10 +182,11 @@ padding: 8px;
 
 
 .keyGpt4, .gpt-key, .davinci {
-	border: solid 1px blueviolet;
+	border: solid 1px #f94b60;
 	margin-bottom: 10px;
 	padding: 5px;
 	background: #fff;
+	border-radius: 8px;
 }
 
 .buttonSummary.active, .buttonSimple.active, .buttonChild.active{
@@ -159,13 +194,43 @@ padding: 8px;
 	color: #090a0d;
 }
 
+.buttonSummary, .buttonSimple, .buttonChild{
+	background: #B4B4B4;
+	color: #090a0d;
+}
+
+
+
 .gpt-child, .gpt-simple, .gpt-summary {
 	border: solid 1px #04ca96;
 	margin-bottom: 10px;
 	padding: 5px;
 	background: #fff;
+	border-radius: 8px;
 }
 .buttonheadline{
 	text-align: center;
 	font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+hr {
+    border: none;
+    border-top: 1px dotted #B4B4B4;
+    height: 5px;
+}
+
+.buttonOriginal.active, .url.active{
+	background: #fb9216;
+	color: #090a0d;
+
+}
+
+.original{
+	border: solid 1px #fb9216;
+	margin-bottom: 10px;
+	padding: 5px;
+	background: #fff;
+	border-radius: 8px;
+
 }

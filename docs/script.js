@@ -39,7 +39,7 @@ function appendData(data) {
         divOriginal.innerHTML = '<b>Original:</b> ' + data[i].originaltext  + '<br><b>' + data[i].flesch[0] + '</b>'
 
         let originalButton = document.createElement('button');
-        originalButton.innerHTML = 'Original';
+        originalButton.innerHTML = 'Original >';
         originalButton.classList.add('buttonOriginal');
         originalButton.onclick =  function() {
             originalButton.classList.toggle("active");
@@ -56,7 +56,7 @@ function appendData(data) {
 
 
         let urlButton = document.createElement('button');
-        urlButton.innerHTML = 'Artikel';
+        urlButton.innerHTML = 'Artikel >';
         urlButton.classList.add('url');
         urlButton.onclick = function() {
             //urlButton.classList.toggle("active");
@@ -69,10 +69,10 @@ function appendData(data) {
         divOwn.classList.add('hidden');
         let idOwn = 'own' + i
         divOwn.id = idOwn;
-        divOwn.innerHTML = '<br><br><b>Own:</b> ' + data[i].own 
+        divOwn.innerHTML = '<b>Own:</b> ' + data[i].own 
 
         let ownButton = document.createElement('button');
-        ownButton.innerHTML = 'Own';
+        ownButton.innerHTML = 'Own >';
         ownButton.classList.add('buttonSumy');
         ownButton.onclick =  function() {
             ownButton.classList.toggle("active");
@@ -93,10 +93,10 @@ function appendData(data) {
           divSumy.classList.add('hidden');
           let idSumy = 'sumy' + i
           divSumy.id = idSumy;
-          divSumy.innerHTML = '<br><br><b>Sumy:</b> ' + data[i].lexrank_sumy 
+          divSumy.innerHTML = '<b>Sumy:</b> ' + data[i].lexrank_sumy 
   
           let sumyButton = document.createElement('button');
-          sumyButton.innerHTML = 'Sumy';
+          sumyButton.innerHTML = 'Sumy >';
           sumyButton.classList.add('buttonSumy');
           sumyButton.onclick =  function() {
               sumyButton.classList.toggle("active");
@@ -122,7 +122,7 @@ function appendData(data) {
         divSummary.innerHTML = '<b>Normal Summary:</b> ' + data[i].text_api_normal_words_05_512 + '<br><b>' + data[i].flesch[4] + '</b>'
 
         let summaryButton = document.createElement('button');
-        summaryButton.innerHTML = 'Normal gpt3';
+        summaryButton.innerHTML = 'Normal gpt3 >';
         summaryButton.classList.add('buttonSummary');
         summaryButton.onclick =  function() {
             summaryButton.classList.toggle("active");
@@ -143,10 +143,10 @@ function appendData(data) {
         divSimple.classList.add('hidden');
         let idSimple = 'simple' + i
         divSimple.id = idSimple;
-        divSimple.innerHTML = '<br><b>Simple Summary</b>: ' + data[i].text_api_simple_words_07_512  + '<br><b>' + data[i].flesch[3] + '</b>'
+        divSimple.innerHTML = '<b>Simple Summary</b>: ' + data[i].text_api_simple_words_07_512  + '<br><b>' + data[i].flesch[3] + '</b>'
 
         let simpleButton = document.createElement('button');
-        simpleButton.innerHTML = 'Simple gpt3';
+        simpleButton.innerHTML = 'Simple gpt3 >';
         simpleButton.classList.add('buttonSimple');
         simpleButton.onclick =  function() {
             simpleButton.classList.toggle("active");
@@ -170,10 +170,10 @@ function appendData(data) {
         divChild.classList.add('hidden');
         let idChild = 'child' + i
         divChild.id = idChild;
-        divChild.innerHTML = '<br><b>Child Summary:</b> ' + data[i].text_api_child_09_350  + '<br><b>' + data[i].flesch[5] + '</b>'
+        divChild.innerHTML = '<b>Child Summary:</b> ' + data[i].text_api_child_09_350  + '<br><b>' + data[i].flesch[5] + '</b>'
 
         let childButton = document.createElement('button');
-        childButton.innerHTML = 'Child gpt3';
+        childButton.innerHTML = 'Child gpt3 >';
         childButton.classList.add('buttonChild');
         childButton.onclick =  function() {
             childButton.classList.toggle("active");
@@ -200,7 +200,7 @@ function appendData(data) {
         divKey.innerHTML = '<b>Keynotes gpt3:</b><br> ' + keynotes
 
         let keyButton = document.createElement('button');
-        keyButton.innerHTML = 'Keynotes gpt3';
+        keyButton.innerHTML = 'Keynotes gpt3 >';
         keyButton.classList.add('buttonKey');
         keyButton.onclick =  function() {
             keyButton.classList.toggle("active");
@@ -227,7 +227,7 @@ function appendData(data) {
         divKeyDavi.innerHTML = '<b>Keynotes davinci:</b><br> ' + keynotesDavi
 
         let keyDaviButton = document.createElement('button');
-        keyDaviButton.innerHTML = 'Keynotes davinci';
+        keyDaviButton.innerHTML = 'Keynotes davinci >';
         keyDaviButton.classList.add('buttonKeyDavi');
         keyDaviButton.onclick =  function() {
             keyDaviButton.classList.toggle("active");
@@ -255,7 +255,7 @@ function appendData(data) {
         divKeyGpt4.innerHTML = '<b>Keynotes gpt4:</b><br> ' + keynotesGpt4
 
         let keyGPT4Button = document.createElement('button');
-        keyGPT4Button.innerHTML = 'Keynotes gpt4';
+        keyGPT4Button.innerHTML = 'Keynotes gpt4 >';
         keyGPT4Button.classList.add('buttonKeyGpt4');
         keyGPT4Button.onclick =  function() {
             keyGPT4Button.classList.toggle("active");
@@ -400,7 +400,7 @@ function appendData(data) {
 
         // CheckButton für Antworten
         let qaButton = document.createElement('button');
-        qaButton.innerHTML = '? gpt3';
+        qaButton.innerHTML = '? gpt3 >';
         qaButton.classList.add('buttonQA');
         qaButton.onclick =  function() {
             qaButton.classList.toggle("active");
@@ -544,7 +544,7 @@ function appendData(data) {
 
         // CheckButton für Antworten
         let qaButtonB = document.createElement('button');
-        qaButtonB.innerHTML = '? gpt4';
+        qaButtonB.innerHTML = '? gpt4 >';
         qaButtonB.classList.add('buttonQAB');
         qaButtonB.onclick =  function() {
             qaButtonB.classList.toggle("active");
@@ -589,6 +589,12 @@ function appendData(data) {
         if (data[i].five_letter_word_list.length > 60) {
             hei = 480;
         }
+        if (data[i].five_letter_word_list.length > 70) {
+            hei = 520;
+        }
+        if (data[i].five_letter_word_list.length > 80) {
+            hei = 560;
+        }
 
 
         iframe.height = hei;
@@ -596,7 +602,7 @@ function appendData(data) {
 
 
         let wordleButton = document.createElement('button');
-        wordleButton.innerHTML = 'wordle';
+        wordleButton.innerHTML = 'wordle >';
         wordleButton.classList.add('buttonWordle');
         let firstclick = true;
         wordleButton.onclick = function() {
@@ -628,7 +634,7 @@ function appendData(data) {
 
         let divLine = document.createElement("div");
         divLine.classList.add('line');
-        divLine.innerHTML = '<br><br>------------------------------<br><br>'
+        divLine.innerHTML = '<br><br><hr><br><br>'
 
 
         // let divArticleExt =  document.createElement("div");

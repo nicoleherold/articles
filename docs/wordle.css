@@ -69,6 +69,7 @@ button {
   margin-left: 10px;
   margin-bottom: 10px;
   border: none;
+  border-radius: 12px;
 }
 
 
@@ -81,9 +82,8 @@ button {
   
 #wordle{
   border: solid 1px #ffc530;
-  /* border-radius: 10px; */
-  /* background-color: #fff; */
-  background: #ffea7b;
+  background: white;
+  border-radius: 8px;
 }
 
 #feedback {
@@ -92,4 +92,5 @@ button {
 
 #wordle p {
   font-family: 'Roboto Condensed', sans-serif;
+  padding: 5px;
 }
