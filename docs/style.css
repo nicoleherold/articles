@@ -139,19 +139,15 @@ border-radius: 8px;
 }
 
 
-.buttonQA.active, .buttonQAB.active{
+.buttonQASpacy.active, .buttonQA.active, .buttonQAB.active{
 	background: #1a51f4;
 	color: white;
 }
 
-.buttonQA, .buttonQAB{
-	/* background: white;
-	color:#333;
-	border: solid 1px #333; */
-
+/* .buttonQASpacy, .buttonQA, .buttonQAB{
 	background: #B4B4B4;
 	color: #090a0d;
-}
+} */
 
 .own, .sumy{
 	border: solid 1px blueviolet;
@@ -194,10 +190,10 @@ border-radius: 8px;
 	color: #090a0d;
 }
 
-.buttonSummary, .buttonSimple, .buttonChild{
+/* .buttonSummary, .buttonSimple, .buttonChild{
 	background: #B4B4B4;
 	color: #090a0d;
-}
+} */
 
 
 
@@ -216,7 +212,7 @@ border-radius: 8px;
 
 hr {
     border: none;
-    border-top: 1px dotted #B4B4B4;
+    border-top: 1px dotted #8f8e8e;
     height: 5px;
 }
 
@@ -232,5 +228,29 @@ hr {
 	padding: 5px;
 	background: #fff;
 	border-radius: 8px;
+
+}
+
+
+h4 {
+	display: flex;
+	flex-direction: row;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
+	margin-bottom: 3px;
+	margin-top: -3px;
+	color: #B4B4B4;
+}
+  
+h4:before,
+h4:after {
+	content: "";
+	flex: 1 1;
+	border-bottom: 1px dotted #B4B4B4;
+	margin: auto;
+}
+
+.lineEx{
+ margin-top: 3px;
 
 }

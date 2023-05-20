@@ -1,5 +1,5 @@
 
-fetch('data4.json')
+fetch('data.json')
     .then(function (response) {
         return response.json();
     })
@@ -39,7 +39,7 @@ function appendData(data) {
         divOriginal.innerHTML = '<b>Original:</b> ' + data[i].originaltext  + '<br><b>' + data[i].flesch[0] + '</b>'
 
         let originalButton = document.createElement('button');
-        originalButton.innerHTML = 'Original >';
+        originalButton.innerHTML = 'Original';
         originalButton.classList.add('buttonOriginal');
         originalButton.onclick =  function() {
             originalButton.classList.toggle("active");
@@ -56,7 +56,7 @@ function appendData(data) {
 
 
         let urlButton = document.createElement('button');
-        urlButton.innerHTML = 'Artikel >';
+        urlButton.innerHTML = 'Artikel >>';
         urlButton.classList.add('url');
         urlButton.onclick = function() {
             //urlButton.classList.toggle("active");
@@ -72,7 +72,7 @@ function appendData(data) {
         divOwn.innerHTML = '<b>Own:</b> ' + data[i].own 
 
         let ownButton = document.createElement('button');
-        ownButton.innerHTML = 'Own >';
+        ownButton.innerHTML = 'Own';
         ownButton.classList.add('buttonSumy');
         ownButton.onclick =  function() {
             ownButton.classList.toggle("active");
@@ -96,7 +96,7 @@ function appendData(data) {
           divSumy.innerHTML = '<b>Sumy:</b> ' + data[i].lexrank_sumy 
   
           let sumyButton = document.createElement('button');
-          sumyButton.innerHTML = 'Sumy >';
+          sumyButton.innerHTML = 'Sumy';
           sumyButton.classList.add('buttonSumy');
           sumyButton.onclick =  function() {
               sumyButton.classList.toggle("active");
@@ -114,15 +114,20 @@ function appendData(data) {
 
 
 
+
+            
+
         let divSummary = document.createElement("div");
         divSummary.classList.add('gpt-summary');
         divSummary.classList.add('hidden');
         let idSummary = 'summary' + i
         divSummary.id = idSummary;
-        divSummary.innerHTML = '<b>Normal Summary:</b> ' + data[i].text_api_normal_words_05_512 + '<br><b>' + data[i].flesch[4] + '</b>'
+        text = '<b>Normal Summary:</b> ' + data[i].text_api_normal_words_05_512 + '<br><b>' + data[i].flesch[4] + '</b>'
+        text = text.replaceAll("ß","ss")
+        divSummary.innerHTML = text
 
         let summaryButton = document.createElement('button');
-        summaryButton.innerHTML = 'Normal gpt3 >';
+        summaryButton.innerHTML = 'Normal gpt3';
         summaryButton.classList.add('buttonSummary');
         summaryButton.onclick =  function() {
             summaryButton.classList.toggle("active");
@@ -146,7 +151,7 @@ function appendData(data) {
         divSimple.innerHTML = '<b>Simple Summary</b>: ' + data[i].text_api_simple_words_07_512  + '<br><b>' + data[i].flesch[3] + '</b>'
 
         let simpleButton = document.createElement('button');
-        simpleButton.innerHTML = 'Simple gpt3 >';
+        simpleButton.innerHTML = 'Simple gpt3';
         simpleButton.classList.add('buttonSimple');
         simpleButton.onclick =  function() {
             simpleButton.classList.toggle("active");
@@ -173,7 +178,7 @@ function appendData(data) {
         divChild.innerHTML = '<b>Child Summary:</b> ' + data[i].text_api_child_09_350  + '<br><b>' + data[i].flesch[5] + '</b>'
 
         let childButton = document.createElement('button');
-        childButton.innerHTML = 'Child gpt3 >';
+        childButton.innerHTML = 'Child gpt3';
         childButton.classList.add('buttonChild');
         childButton.onclick =  function() {
             childButton.classList.toggle("active");
@@ -200,7 +205,7 @@ function appendData(data) {
         divKey.innerHTML = '<b>Keynotes gpt3:</b><br> ' + keynotes
 
         let keyButton = document.createElement('button');
-        keyButton.innerHTML = 'Keynotes gpt3 >';
+        keyButton.innerHTML = 'Keynotes gpt3';
         keyButton.classList.add('buttonKey');
         keyButton.onclick =  function() {
             keyButton.classList.toggle("active");
@@ -227,7 +232,7 @@ function appendData(data) {
         divKeyDavi.innerHTML = '<b>Keynotes davinci:</b><br> ' + keynotesDavi
 
         let keyDaviButton = document.createElement('button');
-        keyDaviButton.innerHTML = 'Keynotes davinci >';
+        keyDaviButton.innerHTML = 'Keynotes davinci';
         keyDaviButton.classList.add('buttonKeyDavi');
         keyDaviButton.onclick =  function() {
             keyDaviButton.classList.toggle("active");
@@ -255,7 +260,7 @@ function appendData(data) {
         divKeyGpt4.innerHTML = '<b>Keynotes gpt4:</b><br> ' + keynotesGpt4
 
         let keyGPT4Button = document.createElement('button');
-        keyGPT4Button.innerHTML = 'Keynotes gpt4 >';
+        keyGPT4Button.innerHTML = 'Keynotes gpt4';
         keyGPT4Button.classList.add('buttonKeyGpt4');
         keyGPT4Button.onclick =  function() {
             keyGPT4Button.classList.toggle("active");
@@ -271,6 +276,150 @@ function appendData(data) {
         };
 
         
+        /* Fragen / Antworten   Spacy*/
+
+
+        
+            //Randomisiert Fragen zusammenstellen, Zahl zwischen 1 und 3 ausgebe
+            // 1 => Reihenfolge: 1 2 3; 2 => Reihenfolge: 2 3 1; 3 => Reihenfolge: 3 1 2;
+            answerOrderSpacy = (Math.floor(Math.random() * 3)+1);
+
+            // frage darstellen
+            questionSpacy = data[i].frage_antwort[0]
+            let formQASpacy = document.createElement("form");
+            formQASpacy.classList.add('hidden');
+            formQASpacy.id = 'qaSpacy' + i
+            let questSpacy = document.createElement("p");
+            questSpacy.innerHTML = '<b>' + questionSpacy + '</b>' + '<br>'
+
+            //Frage in From einfügen
+            formQASpacy.appendChild(questSpacy)
+
+
+
+            //Antwort 1 darstellen
+            answer1spacy = data[i].frage_antwort[1]
+            let ans1spacy = document.createElement("input");
+            ans1spacy.type = "radio"
+            let idA1spacy = "answSpacy" + "_" + i + "_1"
+            ans1spacy.id = idA1spacy
+            ans1spacy.name =  'qaSpacy' + i
+            ans1spacy.value = "1"
+            let ans1Labelspacy = document.createElement("label");
+            // ans1Label.for = "answ" + "_" + i + "_1"
+            ans1Labelspacy.innerHTML = answer1spacy + '<br>'
+
+
+
+
+
+            //Antwort 2 darstellen
+            answer2spacy = data[i].frage_antwort[2]
+            let ans2spacy = document.createElement("input");
+            ans2spacy.type = "radio"
+            let idA2spacy = "answSpacy" + "_" + i + "_2"
+            ans2spacy.id = idA2spacy
+            ans2spacy.name =  'qaSpacy' + i
+            ans2spacy.value = "2"
+            let ans2Labelspacy = document.createElement("label");
+            // ans2Label.for = "answ" + "_" + i + "_2"
+            ans2Labelspacy.innerHTML = answer2spacy + '<br>'
+
+
+
+
+            //Antwort 3 darstellen
+            answer3spacy = data[i].frage_antwort[3]
+            let ans3spacy = document.createElement("input");
+            ans3spacy.type = "radio";
+            let idA3spacy = "answSpacy" + "_" + i + "_3";
+            ans3spacy.id = idA3spacy;
+            ans3spacy.name =  'qaSpacy' + i
+            ans3spacy.value = "3";
+            let ans3Labelspacy = document.createElement("label");
+            // ans3Label.for = "answ" + "_" + i + "_3"
+            ans3Labelspacy.innerHTML = answer3spacy + '<br>';
+
+
+
+
+
+
+
+            // Fragen nach AnswerOrder einfügen:
+            if (answerOrderSpacy ==1){
+                formQASpacy.appendChild(ans1spacy);
+                formQASpacy.appendChild(ans1Labelspacy);
+                formQASpacy.appendChild(ans2spacy);
+                formQASpacy.appendChild(ans2Labelspacy);
+                formQASpacy.appendChild(ans3spacy);
+                formQASpacy.appendChild(ans3Labelspacy);
+            }
+            else if (answerOrderSpacy ==2){
+                formQASpacy.appendChild(ans2spacy);
+                formQASpacy.appendChild(ans2Labelspacy);
+                formQASpacy.appendChild(ans3spacy);
+                formQASpacy.appendChild(ans3Labelspacy);
+                formQASpacy.appendChild(ans1spacy);
+                formQASpacy.appendChild(ans1Labelspacy);
+            }
+            else if (answerOrderSpacy ==3){
+                formQASpacy.appendChild(ans3spacy);
+                formQASpacy.appendChild(ans3Labelspacy);
+                formQASpacy.appendChild(ans1spacy);
+                formQASpacy.appendChild(ans1Labelspacy);
+                formQASpacy.appendChild(ans2spacy);
+                formQASpacy.appendChild(ans2Labelspacy);
+            }
+
+
+
+            // Checkbutton
+            let checkButtonSpacy = document.createElement("button");
+            checkButtonSpacy.innerHTML = 'check Antwort spacy';
+            checkButtonSpacy.type = "button";
+            idFormSpacy = 'qaSpacy' + i
+            let inputnameSpacy = `input[name="${idFormSpacy}"]`
+
+            checkButtonSpacy.onclick = function() {
+                let rightAnsSpacy = document.querySelector(`${inputnameSpacy}:checked`);
+                if (rightAnsSpacy.value == '1'){
+                    checkDivSpacy.innerHTML = "Richtig!"
+                } else {
+                    checkDivSpacy.innerHTML = "Falsch!"
+                }
+            }
+
+            formQASpacy.appendChild(checkButtonSpacy);
+
+            //Create Div für Checkantwort
+
+            let checkDivSpacy = document.createElement("div");
+            let idCheckQuestionSpacy = "checkSpacy" + i;
+            checkDivSpacy.id = idCheckQuestionSpacy;
+
+            formQASpacy.appendChild(checkDivSpacy);
+        
+    
+
+
+            // CheckButton für Antworten
+            let qaButtonSpacy = document.createElement('button');
+            qaButtonSpacy.innerHTML = '? spacy';
+            qaButtonSpacy.classList.add('buttonQASpacy');
+            qaButtonSpacy.onclick =  function() {
+                qaButtonSpacy.classList.toggle("active");
+                let idQaSpacy = 'qaSpacy' + i
+                let qaSpacy = document.getElementById(idQaSpacy);
+                if (qaSpacy.classList.contains("hidden")) {
+                    qaSpacy.classList.remove("hidden");
+                    qaSpacy.classList.add("visible");
+                } else {
+                    qaSpacy.classList.remove("visible");
+                    qaSpacy.classList.add("hidden");
+                }
+            };
+
 
         /* Fragen / Antworten   GPT3*/
 
@@ -400,7 +549,7 @@ function appendData(data) {
 
         // CheckButton für Antworten
         let qaButton = document.createElement('button');
-        qaButton.innerHTML = '? gpt3 >';
+        qaButton.innerHTML = '? gpt3';
         qaButton.classList.add('buttonQA');
         qaButton.onclick =  function() {
             qaButton.classList.toggle("active");
@@ -544,7 +693,7 @@ function appendData(data) {
 
         // CheckButton für Antworten
         let qaButtonB = document.createElement('button');
-        qaButtonB.innerHTML = '? gpt4 >';
+        qaButtonB.innerHTML = '? gpt4';
         qaButtonB.classList.add('buttonQAB');
         qaButtonB.onclick =  function() {
             qaButtonB.classList.toggle("active");
@@ -602,7 +751,7 @@ function appendData(data) {
 
 
         let wordleButton = document.createElement('button');
-        wordleButton.innerHTML = 'wordle >';
+        wordleButton.innerHTML = 'wordle';
         wordleButton.classList.add('buttonWordle');
         let firstclick = true;
         wordleButton.onclick = function() {
@@ -630,36 +779,64 @@ function appendData(data) {
 
         
 
-
+        // Trennlinien und Button-Trennlinien erstellen
 
         let divLine = document.createElement("div");
         divLine.classList.add('line');
         divLine.innerHTML = '<br><br><hr><br><br>'
 
 
-        // let divArticleExt =  document.createElement("div");
-        // divArticleExt.classList.add('buttonheadline');
-        // divArticleExt.innerHTML = '<span>----- Extrahierende Zusammenfassungen -----</span>'
+        let divLineExt =  document.createElement("h4");
+        divLineExt.classList.add('lineEx');
+        divLineExt.innerHTML = '&nbsp;Original & extrahierende Zusammenfassungen&nbsp;'
+
+        let divLineAbs =  document.createElement("h4");
+        divLineAbs.classList.add('lineAbs');
+        divLineAbs.innerHTML = '&nbsp;Abstrahierende Zusammenfassungen&nbsp;'
+
+        let divLineKey =  document.createElement("h4");
+        divLineKey.classList.add('lineKey');
+        divLineKey.innerHTML = '&nbsp;Keynotes&nbsp;'
+
+
+        let divLineQA=  document.createElement("h4");
+        divLineQA.classList.add('lineKey');
+        divLineQA.innerHTML = '&nbsp;Frage/Antworten/Quiz&nbsp;'
 
 
         mainContainer.appendChild(divTitleheader);
         mainContainer.appendChild(divTitle);
         mainContainer.appendChild(divLead);
-        // mainContainer.appendChild(divArticleExt);
-        
+        // Trennlinie Ex
+        mainContainer.appendChild(divLineExt);
+
         mainContainer.appendChild(urlButton); 
         mainContainer.appendChild(originalButton);
         mainContainer.appendChild(ownButton);
         mainContainer.appendChild(sumyButton);  
+        // Trennlinie Abs
+        mainContainer.appendChild(divLineAbs);
+
         mainContainer.appendChild(summaryButton);  
         mainContainer.appendChild(simpleButton); 
         mainContainer.appendChild(childButton);   
+        // Trenn linie Key
+        mainContainer.appendChild(divLineKey);
+
         mainContainer.appendChild(keyButton); 
         mainContainer.appendChild(keyDaviButton);
         mainContainer.appendChild(keyGPT4Button);
+        //Trennlinie QA
+        mainContainer.appendChild(divLineQA);
+        // Nur zeigen, wenn auch Frage/Antwort mit Spacy existiert.
+        if (data[i].frage_antwort.length != 0){
+            mainContainer.appendChild(qaButtonSpacy);
+        }
         mainContainer.appendChild(qaButton);
         mainContainer.appendChild(qaButtonB);
         mainContainer.appendChild(wordleButton); 
+        // Ende Buttons
+        // Divs mit Content, hidden or active
         mainContainer.appendChild(divOriginal);   
         mainContainer.appendChild(divOwn);
         mainContainer.appendChild(divSumy);    
@@ -669,6 +846,10 @@ function appendData(data) {
         mainContainer.appendChild(divKey);
         mainContainer.appendChild(divKeyDavi);
         mainContainer.appendChild(divKeyGpt4);
+        // Nur zeigen, wenn auch Frage/Antwort mit Spacy existiert.
+        if (data[i].frage_antwort.length != 0){
+            mainContainer.appendChild(formQASpacy);
+        }
         mainContainer.appendChild(formQA);
         mainContainer.appendChild(formQAB);
         mainContainer.appendChild(iframe); 
